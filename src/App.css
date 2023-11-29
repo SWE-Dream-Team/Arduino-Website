@@ -2,37 +2,123 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header_bar {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
+  background-color: #3d5c82;
+  color: rgb(43, 133, 211);
+  padding: 5px 10px;
+  box-shadow: 0 1px 5px -1px #000;
+  z-index: 1000;
+}
+
+.header_bar .logo img{
+  width: 74.23px;
+  height: 46.98px;
+}
+
+.header_bar .header_title {
+  text-align: left;
+  margin: 0 0 0 20px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size:xx-large;
+  color:#51c2ffc4;
+  background-color: #3d5c90; 
+  padding: 8px 12px; 
+  border-radius: 15px; 
+  border: 2px solid #293c57;
+}
+
+.header_bar .header_credits {
+  text-align: left;
+  margin: 32px 0 0 4px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:#3e9b66
+}
+
+.side-bar {
+  width: 20%;
+  position: fixed;
+  top: 67px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to right, #ffffff, #f0f0f0); 
+  z-index: 1;
+}
+
+.search-box {
+  width: 85%;
+  margin: auto;
+}
+
+.search-box input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.search-box ul {
+  position: absolute;
+  width: 85%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.search-box li {
+  padding: 8px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.search-box li:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.screenshot-section {
+  margin: 300px 0 0 0;
+}
+
+.screenshot-button {
+  padding: 10px 20px;
+  background-color: red;
   color: white;
+  border: 1.5px solid black;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+  border-radius: 50%;
+  width: 10px;
+  height: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.screenshot-button.pressed {
+  transform: scale(0.95);
+  background-color: #cc0000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.note {
+  margin: 18px 0 0 0;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: x-small;
+  font-style: italic;
+  color:#3d5c90c8;
+}
+
+.screenshot_area {
+  /* background-color: #0ce658; */
+  position: absolute;
+  top: 67px;
+  left: 20%; 
+  width: 1150px; 
+  height: 620px; 
 }

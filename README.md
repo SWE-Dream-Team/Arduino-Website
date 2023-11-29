@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+There will be a number of different libraries and packages you will need to run. The Wokwi elements is a npm package, so we're going to need to use npm. React-Draggable and other packages will probably need to be installed as well. The terminal should prompt you for any necessary packages that need to be installed.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Do not be alarmed when downloading these packages that the terminal says there are vulnerabilites present, some even high priority. This doesn't apply to us since this is still in local development. The program still runs just as fine.
 
 ## Available Scripts
 
@@ -9,7 +9,8 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:4000](http://localhost:4000) to view it in your browser.
+*I changed the port to 4000 so as to not interfere with the vite client server that uses 3000 when running both simultaneously.*
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
