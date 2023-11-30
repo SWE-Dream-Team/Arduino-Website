@@ -9,13 +9,14 @@
 }
 
 .header_bar {
-  position: relative;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   background-color: #3d5c82;
   color: rgb(43, 133, 211);
-  padding: 5px 10px;
+  width: 100%;
+  padding: 5px 5px;
   box-shadow: 0 1px 5px -1px #000;
   z-index: 1000;
 }
