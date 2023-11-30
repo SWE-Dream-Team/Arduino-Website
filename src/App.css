@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.draggable-item {
+  display: inline-flex; /* This will make the div fit its content */
+  justify-content: center; /* Center the content */
+  align-items: center; /* Center the content */
+}
+
 .header_bar {
   position: relative;
   display: flex;

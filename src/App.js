@@ -166,10 +166,10 @@ export default function App() {
       {/* Draggable Components */}
       {components.map(({ type, id }) => (
           <Draggable 
-            key={id} 
+            key={id}
             onDrag={(e, data) => onDragOverTrash(e, data)} 
             onStop={(e, data) => onDragStop(id, e, data)}>
-            <div>{renderComponent(type, id)}</div>
+            <div className="draggable-item">{renderComponent(type, id)}</div>
           </Draggable>
         ))}
 
