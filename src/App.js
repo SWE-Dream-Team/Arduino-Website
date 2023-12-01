@@ -1,13 +1,12 @@
-import React, { useState, useRef } from 'react';
-import './App.css';
-import '@wokwi/elements';
-import Draggable from 'react-draggable';
-import renderComponent from './renderComponent';
-import openTrash from './trash_opened.png';
-import closeTrash from './trash_closed.png';
-import casmmLogo from './casmm_logo.png'
-import html2canvas from 'html2canvas';
-
+import React, { useState, useRef } from "react";
+import "./App.css";
+import "@wokwi/elements";
+import Draggable from "react-draggable";
+import renderComponent from "./renderComponent";
+import openTrash from "./trash_opened.png";
+import closeTrash from "./trash_closed.png";
+import casmmLogo from "./casmm_logo.png";
+import html2canvas from "html2canvas";
 
 export default function App() {
   const [components, setComponents] = useState([]);
@@ -18,7 +17,7 @@ export default function App() {
   };
 
   const deleteComponent = (id) => {
-    setComponents(components.filter(component => component.id !== id));
+    setComponents(components.filter((component) => component.id !== id));
   };
 
   const [allComponents, setAllComponents] = useState([
@@ -29,10 +28,10 @@ export default function App() {
     { label: "Neopixel", value: "neopixel" },
     { label: "Resistor", value: "resistor" },
     { label: "Servo", value: "servo" },
-    { label: "Gas Sensor", value: "gas-sensor" }
+    { label: "Gas Sensor", value: "gas-sensor" },
   ]);
-  
-  const [searchInput, setSearchInput] = useState('');
+
+  const [searchInput, setSearchInput] = useState("");
   const [filteredOptions, setFilteredOptions] = useState(allComponents);
 
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -42,8 +41,8 @@ export default function App() {
   };
 
   const handleBlur = () => {
-  // Use a timeout to allow click event to process before hiding the dropdown
-  setTimeout(() => setIsSearchFocused(false), 200);
+    // Use a timeout to allow click event to process before hiding the dropdown
+    setTimeout(() => setIsSearchFocused(false), 200);
   };
 
   //React State for Button
@@ -58,14 +57,13 @@ export default function App() {
     // Set isTrashOpen to true if over trash
     const draggableRect = e.target.getBoundingClientRect();
     const garbageRect = garbageRef.current.getBoundingClientRect();
-  
-    const isOverTrash = (
+
+    const isOverTrash =
       draggableRect.right > garbageRect.left &&
       draggableRect.left < garbageRect.right &&
       draggableRect.bottom > garbageRect.top &&
-      draggableRect.top < garbageRect.bottom
-    );
-  
+      draggableRect.top < garbageRect.bottom;
+
     setIsTrashOpen(isOverTrash);
   };
 
@@ -74,12 +72,11 @@ export default function App() {
     const draggableRect = e.target.getBoundingClientRect();
     const garbageRect = garbageRef.current.getBoundingClientRect();
 
-    const isDroppedOnTrash = (
+    const isDroppedOnTrash =
       draggableRect.right > garbageRect.left &&
       draggableRect.left < garbageRect.right &&
       draggableRect.bottom > garbageRect.top &&
-      draggableRect.top < garbageRect.bottom
-    );
+      draggableRect.top < garbageRect.bottom;
 
     if (isDroppedOnTrash) {
       deleteComponent(id);
@@ -89,98 +86,104 @@ export default function App() {
   };
 
   const handleSearch = (event) => {
-
     const searchText = event.target.value;
     setSearchInput(searchText);
-    const filtered = allComponents.filter(comp =>
+    const filtered = allComponents.filter((comp) =>
       comp.label.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredOptions(filtered);
   };
-  
+
   const takeScreenshot = () => {
-    // const screenshotTarget = document.getElementsByClassName('screenshot_area');
-    // html2canvas(screenshotTarget).then(canvas => {
-    //   // You can then download the image, or append it to the document
-    //   const image = canvas.toDataURL('image/png');
-    //   const link = document.createElement('a');
-    //   link.href = image;
-    //   link.download = 'testingscreen.png';
-    //   link.click();
-    // });
+    // Targeting the 'draggable-container' div
+    const screenshotTarget = document.querySelector(".draggable-container");
+
+    if (screenshotTarget) {
+      html2canvas(screenshotTarget, {
+        useCORS: true,
+        scrollY: -window.scrollY,
+        scrollX: -window.scrollX,
+        windowHeight: screenshotTarget.scrollHeight,
+        windowWidth: screenshotTarget.scrollWidth,
+      }).then((canvas) => {
+        canvas.toBlob(function (blob) {
+          let link = document.createElement("a");
+          link.download = "casmm_diagram.png";
+          link.href = URL.createObjectURL(blob);
+          link.click();
+        });
+      });
+    }
   };
-  
 
   return (
     <div className="App">
       <header className="header_bar">
         <a className="logo" href="https://www.casmm.org/">
-          <img 
-            src={casmmLogo}
-            alt="Company Logo" />
+          <img src={casmmLogo} alt="Company Logo" />
         </a>
-        <div className="header_title">
-          {"Arduino Circuitry"}
-        </div>
-        <aa className="header_credits">
-          {"powered by WOKWI"}
-        </aa>
+        <div className="header_title">{"Arduino Circuitry"}</div>
+        <aa className="header_credits">{"powered by WOKWI"}</aa>
       </header>
 
       <div className="side-bar">
         <div className="search-box">
           <h3>Component Search</h3> {/* Title */}
-          <input 
-            type="text" 
-            placeholder="Search components..." 
-            onChange={handleSearch} 
+          <input
+            type="text"
+            placeholder="Search components..."
+            onChange={handleSearch}
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
           {filteredOptions.length > 0 && isSearchFocused && (
             <ul>
               {filteredOptions.map(({ label, value }) => (
-                <li key={value} onClick={() => addComponent(value)}>{label}</li>
+                <li key={value} onClick={() => addComponent(value)}>
+                  {label}
+                </li>
               ))}
             </ul>
           )}
         </div>
         <div className="screenshot-section">
           <h3>Screenshot</h3>
-          <button 
+          <button
             onMouseDown={() => setIsPressed(true)}
             onMouseUp={() => setIsPressed(false)}
             onMouseLeave={() => setIsPressed(false)}
-            className={`screenshot-button ${isPressed ? 'pressed' : ''}`}
+            className={`screenshot-button ${isPressed ? "pressed" : ""}`}
             onClick={takeScreenshot}
-          >
-          </button>
+          ></button>
         </div>
         <div className="note">
           {"* Note: Screenshot will be saved to your CASMM Diagram Image *"}
         </div>
       </div>
 
-      <div className="screenshot_area"></div>
-
-      {/* Draggable Components */}
-      {components.map(({ type, id }) => (
-          <Draggable 
-            key={id} 
-            onDrag={(e, data) => onDragOverTrash(e, data)} 
-            onStop={(e, data) => onDragStop(id, e, data)}>
+      {/* Container for Draggable Elements */}
+      <div className="draggable-container">
+        {components.map(({ type, id }) => (
+          <Draggable
+            key={id}
+            onDrag={(e, data) => onDragOverTrash(e, data)}
+            onStop={(e, data) => onDragStop(id, e, data)}
+          >
             <div>{renderComponent(type, id)}</div>
           </Draggable>
         ))}
+      </div>
 
       {/* Trash Icon */}
-      <div className="trash-image" 
-           ref={garbageRef}
-           style={{ position: 'fixed', right: '20px', bottom: '20px' }}>
-        <img 
-          src={isTrashOpen ? openTrash : closeTrash} 
-          alt={isTrashOpen ? "Open Trash" : "Closed Trash"} 
-          style={{ width: '70px', height: '70px' }} // Adjust the size as needed
+      <div
+        className="trash-image"
+        ref={garbageRef}
+        style={{ position: "fixed", right: "20px", bottom: "20px" }}
+      >
+        <img
+          src={isTrashOpen ? openTrash : closeTrash}
+          alt={isTrashOpen ? "Open Trash" : "Closed Trash"}
+          style={{ width: "70px", height: "70px" }} // Adjust the size as needed
         />
       </div>
     </div>
