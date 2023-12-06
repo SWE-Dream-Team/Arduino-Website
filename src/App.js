@@ -209,7 +209,8 @@ export default function App() {
             key={id}
             onDrag={(e, data) => onDragOverTrash(e, data)}
             onStop={(e, data) => onDragStop(id, e, data)}
-            bounds={{top:-50, left:-350}}
+            defaultPosition={{x:200, y:400}}
+            bounds={{top:0, left:-325}}
           >
             <div>{renderComponent(type, id)}</div>
           </Draggable>
