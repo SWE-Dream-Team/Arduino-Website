@@ -1,6 +1,9 @@
-There will be a number of different libraries and packages you will need to run. The Wokwi elements is a npm package, so we're going to need to use npm. React-Draggable and other packages will probably need to be installed as well. The terminal should prompt you for any necessary packages that need to be installed.
+There will be a number of different libraries and packages you will need to run. The Wokwi elements is a npm package, so we're going to need to use npm. React-Draggable and other packages will probably need to be installed as well. They are all included in the dependencies in the package.json file, but just in case, the terminal should prompt you for any necessary packages that need to be installed.
 
 Do not be alarmed when downloading these packages that the terminal says there are vulnerabilites present, some even high priority. This doesn't apply to us since this is still in local development. The program still runs just as fine.
+
+You will most likely need to install react-scripts using npm. You will need to first verify you have node.js installed. You can verify this by running "node -v" in your terminal. Then you can and should run "npm install react-scripts" to be able to start and build the react project.
+
 
 ## Available Scripts
 
